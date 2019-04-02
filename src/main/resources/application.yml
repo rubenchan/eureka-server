@@ -1,0 +1,29 @@
+spring:
+  application:
+    name: eureka-server
+  profiles:
+    active: eureka-server1
+  security:
+    user:
+      name: hi
+      password: ruben
+
+---
+server:
+  port: 19990
+spring:
+  profiles: eureka-server1
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://hi:ruben@localhost:19991/eureka
+
+---
+server:
+  port: 19991
+spring:
+  profiles: eureka-server2
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://hi:ruben@localhost:19990/eureka
